@@ -3,14 +3,121 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>B-I-T.C.H. Podcast</title>
-  <link rel="stylesheet" href="style.css">
+  <title>B.I. Trans Canada Highway Podcast</title>
   <link href="https://fonts.googleapis.com/css2?family=Anton&family=Roboto:wght@400;700&display=swap" rel="stylesheet">
+  <style>
+    body {
+      margin: 0;
+      font-family: 'Roboto', sans-serif;
+      background: #000;
+      color: #fff;
+    }
+    header {
+      text-align: center;
+      padding: 20px;
+      background: #111;
+    }
+    header img {
+      max-height: 120px;
+      margin-bottom: 10px;
+      filter: drop-shadow(0 0 20px red);
+    }
+    h1, h2, h3 {
+      font-family: 'Anton', sans-serif;
+      text-transform: uppercase;
+      text-shadow: 0 0 10px red, 0 0 20px red, 0 0 30px crimson;
+      margin: 10px 0;
+    }
+    nav {
+      margin-top: 15px;
+    }
+    nav a {
+      color: #fff;
+      margin: 0 15px;
+      text-decoration: none;
+      font-weight: bold;
+      font-size: 1.2em;
+      text-shadow: 0 0 5px red, 0 0 10px crimson;
+      transition: color 0.3s, text-shadow 0.3s;
+    }
+    nav a:hover {
+      color: #ff4c4c;
+      text-shadow: 0 0 15px red, 0 0 30px crimson, 0 0 45px darkred;
+    }
+    section {
+      padding: 40px 20px;
+      max-width: 1000px;
+      margin: auto;
+    }
+    .section-title {
+      font-size: 2em;
+      border-bottom: 2px solid red;
+      display: inline-block;
+      padding-bottom: 5px;
+      margin-bottom: 20px;
+    }
+    .episodes-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+      gap: 20px;
+    }
+    .episode-card {
+      background: #111;
+      padding: 15px;
+      border-radius: 10px;
+      box-shadow: 0 0 15px rgba(255,0,0,0.5);
+    }
+    .about-hosts {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 20px;
+      justify-content: center;
+    }
+    .host-card {
+      background: #111;
+      padding: 20px;
+      border-radius: 10px;
+      text-align: center;
+      flex: 1 1 300px;
+      box-shadow: 0 0 15px rgba(255,0,0,0.5);
+    }
+    .host-card img {
+      max-width: 150px;
+      border-radius: 50%;
+      margin-bottom: 10px;
+      border: 2px solid red;
+    }
+    .connect-links a {
+      display: inline-block;
+      margin: 10px;
+      padding: 10px 20px;
+      border: 2px solid red;
+      border-radius: 30px;
+      color: #fff;
+      text-decoration: none;
+      font-weight: bold;
+      text-shadow: 0 0 5px red, 0 0 15px crimson;
+      transition: all 0.3s;
+    }
+    .connect-links a:hover {
+      background: red;
+      color: #000;
+      text-shadow: none;
+    }
+    footer {
+      text-align: center;
+      padding: 20px;
+      background: #111;
+      font-size: 0.9em;
+      border-top: 2px solid red;
+    }
+  </style>
 </head>
 <body>
   <header>
-    <img src="images/logo.png" alt="B-I-T.C.H. Podcast Logo" class="logo">
-    <h1 class="glow">B-I-T.C.H.</h1>
+    <!-- Inline logo as Base64 (replace PLACEHOLDER with your data URI) -->
+    <img src="data:image/png;base64,PLACEHOLDER" alt="B.I.T.C.H. Podcast Logo" class="logo">
+    <h1>B.I. Trans Canada Highway</h1>
     <h2 class="tagline">An UnAmerican Podcast</h2>
     <nav>
       <a href="#episodes">Episodes</a>
@@ -35,6 +142,15 @@
   </section>
 
   <section id="about">
+    <h2 class="section-title">Our Mission</h2>
+    <p>
+      Hey, Canadians! Do you know your rights? Or are you more familiar with the rights of Americans?
+      Media and pop culture may give us the impression that we know the laws and rights that regulate the world around us,
+      but our understanding of the regulatory and governing bodies in Canada might be assumptions from what we know about The US.
+      Join Karen and Alex as we sort through Canadian laws, regulations and rights, and review real Canadian cases that reference
+      or even influence the law in question. We’re not Un-American, we’re just not American.
+    </p>
+
     <h2 class="section-title">About the Hosts</h2>
     <div class="about-hosts">
       <div class="host-card">
@@ -59,7 +175,7 @@
   </section>
 
   <footer>
-    <p>&copy; 2025 B-I-T.C.H. Podcast. All Rights Reserved.</p>
+    <p>&copy; 2025 B.I. Trans Canada Highway Podcast. All Rights Reserved.</p>
   </footer>
 </body>
 </html>
