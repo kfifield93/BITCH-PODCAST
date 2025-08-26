@@ -1,0 +1,100 @@
+body {
+  margin: 0;
+  font-family: 'Roboto', sans-serif;
+  background: linear-gradient(135deg, #000000, #1a1a1a);
+  color: #fff;
+  text-align: center;
+}
+
+header {
+  background: url('images/banner.jpg') no-repeat center center/cover;
+  padding: 50px 20px;
+  position: relative;
+}
+
+header .logo {
+  width: 120px;
+  display: block;
+  margin: 0 auto 20px;
+}
+
+.glow {
+  font-family: 'Anton', sans-serif;
+  font-size: 4em;
+  color: #ff1744;
+  text-shadow: 0 0 10px #ff1744, 0 0 20px #ff5252, 0 0 40px #ff8a80;
+}
+
+.tagline {
+  font-size: 1.5em;
+  margin: 10px 0;
+  color: #ffccbc;
+}
+
+nav a {
+  margin: 0 15px;
+  color: #fff;
+  text-decoration: none;
+  font-weight: bold;
+  transition: color 0.3s;
+}
+
+nav a:hover {
+  color: #ff1744;
+}
+
+.section-title {
+  font-size: 2.5em;
+  margin: 50px 0 20px;
+  text-shadow: 0 0 5px #ff5252;
+}
+
+.episodes-grid {
+  display: flex;
+  justify-content: center;
+  gap: 20px;
+  flex-wrap: wrap;
+}
+
+.episode-card {
+  background: #222;
+  padding: 20px;
+  border-radius: 15px;
+  box-shadow: 0 0 15px #ff1744;
+  width: 300px;
+}
+
+.about-hosts {
+  display: flex;
+  justify-content: center;
+  gap: 40px;
+  flex-wrap: wrap;
+}
+
+.host-card {
+  background: #111;
+  padding: 20px;
+  border-radius: 20px;
+  width: 250px;
+  box-shadow: 0 0 15px #ff5252;
+}
+
+.host-card img {
+  width: 100%;
+  border-radius: 50%;
+  margin-bottom: 15px;
+}
+
+.connect-links a {
+  margin: 0 15px;
+  color: #ff5252;
+  text-decoration: none;
+  font-size: 1.2em;
+  font-weight: bold;
+}
+
+footer {
+  background: #000;
+  padding: 20px;
+  margin-top: 50px;
+}
