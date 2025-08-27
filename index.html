@@ -5,20 +5,19 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
   <title>B.I. Trans Canada Highway</title>
   <style>
-    /* Global Styles */
     body {
       margin: 0;
       font-family: Arial, sans-serif;
       background-color: #000;
       color: #fff;
       line-height: 1.6;
+      scroll-behavior: smooth;
     }
 
-    /* Header with Flickering Neon */
     header {
       position: relative;
       height: 300px;
-      background: url('logo.png') no-repeat center center/cover;
+      background: url('banner-highres.png') no-repeat center center/cover;
       display: flex;
       flex-direction: column;
       justify-content: center;
@@ -28,26 +27,68 @@
       box-shadow: 0 0 30px red;
     }
 
+    header::after {
+      content: "";
+      position: absolute;
+      top: 0; left: 0;
+      width: 100%; height: 100%;
+      background: rgba(0,0,0,0.4);
+    }
+
+    header h1, header p { position: relative; z-index: 1; }
     header h1 {
       margin: 0;
       font-size: 2.5rem;
-      text-shadow: 0 0 5px #ff0000, 0 0 10px #ff0000, 0 0 20px #ff3333, 0 0 30px #ff6666;
+      text-shadow: 0 0 5px #ff0000,0 0 10px #ff0000,0 0 20px #ff3333,0 0 30px #ff6666;
       animation: flicker 1.5s infinite alternate;
     }
-
     header p {
       font-size: 1.2rem;
-      text-shadow: 0 0 5px #ff0000, 0 0 10px #ff3300, 0 0 20px #ff6666;
+      text-shadow: 0 0 5px #ff0000,0 0 10px #ff3300,0 0 20px #ff6666;
       animation: flicker 2s infinite alternate-reverse;
     }
 
     @keyframes flicker {
-      0%, 19%, 21%, 23%, 25%, 54%, 56%, 100% {
-        text-shadow: 0 0 5px #ff0000, 0 0 10px #ff0000, 0 0 20px #ff3333, 0 0 30px #ff6666;
-      }
-      20%, 22%, 24%, 55% {
-        text-shadow: 0 0 2px #ff0000, 0 0 4px #ff3300, 0 0 8px #ff6666;
-      }
+      0%,19%,21%,23%,25%,54%,56%,100% {text-shadow:0 0 5px #ff0000,0 0 10px #ff0000,0 0 20px #ff3333,0 0 30px #ff6666;}
+      20%,22%,24%,55% {text-shadow:0 0 2px #ff0000,0 0 4px #ff3300,0 0 8px #ff6666;}
+    }
+
+    /* Sticky Navbar */
+    nav {
+      position: sticky;
+      top: 0;
+      background: #111;
+      display: flex;
+      justify-content: center;
+      gap: 30px;
+      padding: 15px 0;
+      box-shadow: 0 0 15px red;
+      z-index: 10;
+    }
+
+    nav a {
+      color: #fff;
+      font-weight: bold;
+      text-decoration: none;
+      padding: 8px 16px;
+      border: 2px solid #ff0000;
+      border-radius: 8px;
+      box-shadow: 0 0 5px #ff0000;
+      transition: all 0.3s ease;
+    }
+
+    nav a:hover {
+      color: #000;
+      background: #ff0000;
+      box-shadow: 0 0 15px #ff0000,0 0 25px #ff3300,0 0 40px #ff6666;
+      transform: scale(1.05);
+    }
+
+    nav a.active {
+      color: #000;
+      background: #ff0000;
+      box-shadow: 0 0 15px #ff0000,0 0 25px #ff3300,0 0 40px #ff6666;
+      transform: scale(1.05);
     }
 
     section {
@@ -56,31 +97,22 @@
       max-width: 900px;
       background: #111;
       border-radius: 15px;
-      box-shadow: 0 0 20px #ff0000, 0 0 40px #ff3300;
+      box-shadow: 0 0 20px #ff0000,0 0 40px #ff3300;
       transition: transform 0.3s, box-shadow 0.3s;
     }
 
     section:hover {
       transform: scale(1.02);
-      box-shadow: 0 0 40px #ff0000, 0 0 60px #ff3333;
+      box-shadow: 0 0 40px #ff0000,0 0 60px #ff3333;
     }
 
-    h2 {
-      color: #ff0000;
-      text-align: center;
-      margin-bottom: 20px;
-      animation: flicker 1.5s infinite alternate;
-    }
+    h2 { color: #ff0000; text-align: center; margin-bottom: 20px; animation: flicker 1.5s infinite alternate; }
+    .episode-card { margin-bottom: 25px; flex-wrap: wrap; }
+    .episode-card h3 { margin-bottom: 10px; }
+    .episode-links { display: flex; gap: 15px; flex-wrap: wrap; margin-top: 10px; }
 
-    ul {
-      list-style: none;
-      padding: 0;
-      text-align: center;
-    }
-
-    ul li {
-      margin: 15px 0;
-    }
+    ul { list-style: none; padding: 0; text-align: center; }
+    ul li { margin: 15px 0; }
 
     a {
       color: #fff;
@@ -92,115 +124,115 @@
       transition: all 0.3s ease;
       box-shadow: 0 0 5px #ff0000;
     }
+    a:hover { color: #000; background: #ff0000; box-shadow:0 0 15px #ff0000,0 0 25px #ff3300,0 0 40px #ff6666; transform: scale(1.05); }
 
-    a:hover {
-      color: #000;
-      background: #ff0000;
-      box-shadow: 0 0 15px #ff0000, 0 0 25px #ff3300, 0 0 40px #ff6666;
-      transform: scale(1.05);
-    }
+    .about img, .merch img { width: 200px; height: auto; display: block; margin: 0 auto 20px auto; border-radius: 15px; box-shadow:0 0 20px #ff0000,0 0 40px #ff3300; }
+    footer { text-align:center; padding:20px; background:#111; box-shadow:0 0 15px #ff0000,0 0 30px #ff3300; }
 
-    .episode-card {
-      display: flex;
-      align-items: center;
-      gap: 20px;
-      margin-bottom: 20px;
-      flex-wrap: wrap;
-    }
-
-    .episode-card img {
-      width: 120px;
-      height: auto;
-      border-radius: 10px;
-      box-shadow: 0 0 15px #ff0000;
-      transition: transform 0.3s, box-shadow 0.3s;
-    }
-
-    .episode-card img:hover {
-      transform: scale(1.05);
-      box-shadow: 0 0 30px #ff0000, 0 0 50px #ff3333;
-    }
-
-    .episode-card div {
-      flex: 1;
-      min-width: 200px;
-    }
-
-    .about img, .merch img {
-      width: 200px;
-      height: auto;
-      display: block;
-      margin: 0 auto 20px auto;
-      border-radius: 15px;
-      box-shadow: 0 0 20px #ff0000, 0 0 40px #ff3300;
-    }
-
-    footer {
-      text-align: center;
-      padding: 20px;
-      background: #111;
-      box-shadow: 0 0 15px #ff0000, 0 0 30px #ff3300;
-    }
-
-    @media (max-width: 600px) {
-      header h1 { font-size: 2rem; }
-      header p { font-size: 1rem; }
-      .about img, .merch img { width: 150px; }
-      .episode-card { flex-direction: column; align-items: center; }
-      .episode-card div { text-align: center; }
+    @media (max-width:600px){
+      header h1 { font-size:2rem; }
+      header p { font-size:1rem; }
+      .about img, .merch img { width:150px; }
+      .episode-links { flex-direction: column; align-items:center; }
     }
   </style>
 </head>
 <body>
-  <header>
-    <h1>B.I. Trans Canada Highway</h1>
-    <p>Exploring Canadian Rights and Laws</p>
-  </header>
 
-  <section class="episodes">
-    <h2>Latest Episodes</h2>
-    <div class="episode-card">
-      <img src="episode1.png" alt="Episode 5 Cover">
-      <div>
-        <h3>Episode 5: Canada's Riot Laws</h3>
-        <p>We dive into historical and recent riots in Canada, including the Murray Hill Riot, and explore Canada's Riot Act and unlawful assembly laws.</p>
-        <a href="https://open.spotify.com/show/0mNWppvKfZ7rHbtFVbGU24" target="_blank">Listen on Spotify</a>
-      </div>
+<header>
+  <h1>B.I. Trans Canada Highway</h1>
+  <p>Exploring Canadian Rights and Laws</p>
+</header>
+
+<nav>
+  <a href="#episodes">Episodes</a>
+  <a href="#connect">Connect</a>
+  <a href="#about">About</a>
+  <a href="#merch">Merchandise</a>
+</nav>
+
+<section id="episodes">
+  <h2>Latest Episodes</h2>
+  <div class="episode-card">
+    <h3>Episode 5: Canada's Riot Laws</h3>
+    <p>We dive into historical and recent riots in Canada, including the Murray Hill Riot, and explore Canada's Riot Act and unlawful assembly laws.</p>
+    <div class="episode-links">
+      <a href="https://open.spotify.com/show/0mNWppvKfZ7rHbtFVbGU24" target="_blank">Spotify</a>
+      <a href="https://podcasts.apple.com/us/podcast/b-i-trans-canada-highway/id1816272099" target="_blank">Apple</a>
+      <a href="https://www.podbean.com/media/share/pb-4r8p3-18f0c1e" target="_blank">Podbean</a>
     </div>
-    <div class="episode-card">
-      <img src="episode2.png" alt="Episode 4 Cover">
-      <div>
-        <h3>Episode 4: Missing and Murdered Indigenous Women</h3>
-        <p>Exploring the epidemic of missing and murdered Indigenous women and girls in Canada, federal inquiry, and community responses.</p>
-        <a href="https://www.podbean.com/media/share/pb-4r8p3-18f0c1e" target="_blank">Listen on Podbean</a>
-      </div>
+  </div>
+  <div class="episode-card">
+    <h3>Episode 4: Missing and Murdered Indigenous Women</h3>
+    <p>Exploring the epidemic of missing and murdered Indigenous women and girls in Canada, federal inquiry, and community responses.</p>
+    <div class="episode-links">
+      <a href="https://open.spotify.com/show/0mNWppvKfZ7rHbtFVbGU24" target="_blank">Spotify</a>
+      <a href="https://podcasts.apple.com/us/podcast/b-i-trans-canada-highway/id1816272099" target="_blank">Apple</a>
+      <a href="https://www.podbean.com/media/share/pb-4r8p3-18f0c1e" target="_blank">Podbean</a>
     </div>
-  </section>
+  </div>
+  <div class="episode-card">
+    <h3>Episode 3: Understanding Canadian Rights</h3>
+    <p>A deep dive into Canadian rights compared to American laws, including real case examples and legal interpretations.</p>
+    <div class="episode-links">
+      <a href="https://open.spotify.com/show/0mNWppvKfZ7rHbtFVbGU24" target="_blank">Spotify</a>
+      <a href="https://podcasts.apple.com/us/podcast/b-i-trans-canada-highway/id1816272099" target="_blank">Apple</a>
+      <a href="https://www.podbean.com/media/share/pb-4r8p3-18f0c1e" target="_blank">Podbean</a>
+    </div>
+  </div>
+</section>
 
-  <section class="connect">
-    <h2>Connect With Us</h2>
-    <ul>
-      <li><a href="https://www.facebook.com/profile.php?id=61577986559997" target="_blank">Facebook</a></li>
-      <li><a href="mailto:bitranscanadahighway@gmail.com">Email</a></li>
-    </ul>
-  </section>
+<section id="connect">
+  <h2>Connect With Us</h2>
+  <ul>
+    <li><a href="https://www.facebook.com/profile.php?id=61577986559997" target="_blank">Facebook</a></li>
+    <li><a href="mailto:bitranscanadahighway@gmail.com">Email</a></li>
+  </ul>
+</section>
 
-  <section class="about">
-    <h2>About the Hosts</h2>
-    <img src="host_image.png" alt="Karen and Alex">
-    <p><strong>Karen Silver</strong> is a children's author and journalist from St. John's, NL. She has a BA in Communications and Linguistics from Memorial University of Newfoundland. Karen created Write On NL to support literary arts in NL. <em>"I love helping Canadians understand their rights!"</em></p>
-    <p><strong>Alex Noftal</strong> – Bio coming soon! <em>"Let's explore Canadian laws together."</em></p>
-  </section>
+<section id="about">
+  <h2>About the Hosts</h2>
+  <img src="host_image.png" alt="Karen and Alex">
+  <p><strong>Karen Silver</strong> is a children's author and journalist from St. John's, NL. She has a BA in Communications and Linguistics from Memorial University of Newfoundland. Karen created Write On NL to support literary arts in NL. <em>"I love helping Canadians understand their rights!"</em></p>
+  <p><strong>Alex Noftal</strong> – Bio coming soon! <em>"Let's explore Canadian laws together."</em></p>
+</section>
 
-  <section class="merch">
-    <h2>Merchandise</h2>
-    <img src="merch-placeholder.png" alt="Merch Coming Soon">
-    <p>Stay tuned for our exclusive merchandise.</p>
-  </section>
+<section id="merch">
+  <h2>Merchandise</h2>
+  <img src="merch-placeholder.png" alt="Merch Coming Soon">
+  <p>Stay tuned for our exclusive merchandise.</p>
+</section>
 
-  <footer>
-    <p>&copy; 2025 B.I. Trans Canada Highway | All Rights Reserved</p>
-  </footer>
+<footer>
+  <p>&copy; 2025 B.I. Trans Canada Highway | All Rights Reserved</p>
+</footer>
+
+<script>
+  // Scrollspy
+  const sections = document.querySelectorAll('section');
+  const navLinks = document.querySelectorAll('nav a');
+
+  window.addEventListener('scroll', () => {
+    let current = '';
+    sections.forEach(section => {
+      const sectionTop = section.offsetTop - 100;
+      const sectionHeight = section.clientHeight;
+      if (pageYOffset >= sectionTop && pageYOffset < sectionTop + sectionHeight) {
+        current = section.getAttribute('id');
+      }
+    });
+
+    navLinks.forEach(link => {
+      link.classList.remove('active');
+      if (link.getAttribute('href') === '#' + current) {
+        link.classList.add('active');
+      }
+    });
+  });
+</script>
+
 </body>
 </html>
+
+
 
