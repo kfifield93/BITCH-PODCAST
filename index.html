@@ -1,141 +1,175 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-  <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
-  <title>B.I. Trans Canada Highway</title>
-  <style>
-    body {
-      margin: 0;
-      font-family: Arial, sans-serif;
-      background-color: #000;
-      color: #fff;
-      line-height: 1.6;
-      scroll-behavior: smooth;
-    }
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>B.I. Trans Canada Highway</title>
+<style>
+  body {
+    margin:0;
+    font-family: Arial, sans-serif;
+    background:#000;
+    color:#fff;
+    scroll-behavior: smooth;
+  }
 
-    header {
-      position: relative;
-      height: 300px;
-      background: url('banner-highres.png') no-repeat center center/cover;
-      display: flex;
-      flex-direction: column;
-      justify-content: center;
-      align-items: center;
-      text-align: center;
-      color: #ff0000;
-      box-shadow: 0 0 30px red;
-    }
+  /* Banner */
+  header {
+    position: relative;
+    height: 300px;
+    background: url('banner-highres.png') center/cover no-repeat;
+    display:flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    text-align:center;
+    color:#ff0000;
+  }
+  header::after {
+    content:"";
+    position:absolute;
+    top:0; left:0;
+    width:100%; height:100%;
+    background: rgba(0,0,0,0.4);
+  }
+  header h1, header p {
+    position: relative;
+    z-index:1;
+    margin:0;
+  }
+  header h1 {
+    font-size:2.8rem;
+    text-shadow: 0 0 5px #ff0000,0 0 10px #ff0000,0 0 20px #ff3300;
+    animation:flicker 1.5s infinite alternate;
+  }
+  header p {
+    font-size:1.2rem;
+    text-shadow: 0 0 5px #ff0000,0 0 10px #ff3300;
+    animation:flicker 2s infinite alternate-reverse;
+  }
+  @keyframes flicker {
+    0%,19%,21%,23%,25%,54%,56%,100% {text-shadow:0 0 5px #ff0000,0 0 10px #ff0000,0 0 20px #ff3300;}
+    20%,22%,24%,55% {text-shadow:0 0 2px #ff0000,0 0 4px #ff3300;}
+  }
 
-    header::after {
-      content: "";
-      position: absolute;
-      top: 0; left: 0;
-      width: 100%; height: 100%;
-      background: rgba(0,0,0,0.4);
-    }
+  /* Navbar */
+  nav {
+    position: sticky;
+    top:0;
+    background:#111;
+    display:flex;
+    justify-content:center;
+    gap:25px;
+    padding:15px 0;
+    z-index:10;
+    box-shadow:0 0 15px red;
+  }
+  nav a {
+    color:#fff;
+    font-weight:bold;
+    text-decoration:none;
+    padding:8px 16px;
+    border:2px solid #ff0000;
+    border-radius:8px;
+    transition: all 0.3s ease;
+    box-shadow:0 0 5px #ff0000;
+  }
+  nav a:hover, nav a.active {
+    color:#000;
+    background:#ff0000;
+    box-shadow:0 0 15px #ff0000,0 0 25px #ff3300;
+    transform: scale(1.05);
+  }
 
-    header h1, header p { position: relative; z-index: 1; }
-    header h1 {
-      margin: 0;
-      font-size: 2.5rem;
-      text-shadow: 0 0 5px #ff0000,0 0 10px #ff0000,0 0 20px #ff3333,0 0 30px #ff6666;
-      animation: flicker 1.5s infinite alternate;
-    }
-    header p {
-      font-size: 1.2rem;
-      text-shadow: 0 0 5px #ff0000,0 0 10px #ff3300,0 0 20px #ff6666;
-      animation: flicker 2s infinite alternate-reverse;
-    }
+  /* Sections */
+  section {
+    max-width:900px;
+    margin:30px auto;
+    padding:40px 20px;
+    background:#111;
+    border-radius:15px;
+    box-shadow:0 0 20px #ff0000,0 0 40px #ff3300;
+    opacity:0;
+    transform: translateY(30px);
+    transition: all 0.8s ease-out;
+  }
+  section.visible {
+    opacity:1;
+    transform: translateY(0);
+  }
+  h2 {
+    color:#ff0000;
+    text-align:center;
+    margin-bottom:20px;
+    animation:flicker 1.5s infinite alternate;
+  }
 
-    @keyframes flicker {
-      0%,19%,21%,23%,25%,54%,56%,100% {text-shadow:0 0 5px #ff0000,0 0 10px #ff0000,0 0 20px #ff3333,0 0 30px #ff6666;}
-      20%,22%,24%,55% {text-shadow:0 0 2px #ff0000,0 0 4px #ff3300,0 0 8px #ff6666;}
-    }
+  /* Episodes */
+  .episode-card {
+    background:#000;
+    border:2px solid #ff0000;
+    border-radius:15px;
+    padding:20px;
+    margin-bottom:25px;
+    box-shadow:0 0 15px #ff0000;
+    transition: transform 0.3s, box-shadow 0.3s;
+  }
+  .episode-card:hover {
+    transform: scale(1.03);
+    box-shadow:0 0 25px #ff0000,0 0 40px #ff3300;
+  }
+  .episode-card h3 { margin-bottom:10px; }
+  .episode-links {
+    display:flex;
+    gap:15px;
+    flex-wrap:wrap;
+    margin-top:10px;
+    justify-content:center;
+  }
 
-    /* Sticky Navbar */
-    nav {
-      position: sticky;
-      top: 0;
-      background: #111;
-      display: flex;
-      justify-content: center;
-      gap: 30px;
-      padding: 15px 0;
-      box-shadow: 0 0 15px red;
-      z-index: 10;
-    }
+  /* About Section */
+  .about-container {
+    display:flex;
+    align-items:center;
+    gap:30px;
+    flex-wrap:wrap;
+  }
+  .about-container img {
+    width:200px;
+    border-radius:15px;
+    box-shadow:0 0 20px #ff0000,0 0 40px #ff3300;
+  }
+  .about-container p { flex:1; text-align:left; }
 
-    nav a {
-      color: #fff;
-      font-weight: bold;
-      text-decoration: none;
-      padding: 8px 16px;
-      border: 2px solid #ff0000;
-      border-radius: 8px;
-      box-shadow: 0 0 5px #ff0000;
-      transition: all 0.3s ease;
-    }
+  /* Merch */
+  .merch-card {
+    text-align:center;
+    padding:30px;
+    border:2px solid #ff0000;
+    border-radius:15px;
+    box-shadow:0 0 20px #ff0000,0 0 40px #ff3300;
+    transition: transform 0.3s, box-shadow 0.3s;
+  }
+  .merch-card:hover {
+    transform: scale(1.05);
+    box-shadow:0 0 30px #ff0000,0 0 50px #ff3300;
+  }
 
-    nav a:hover {
-      color: #000;
-      background: #ff0000;
-      box-shadow: 0 0 15px #ff0000,0 0 25px #ff3300,0 0 40px #ff6666;
-      transform: scale(1.05);
-    }
+  footer {
+    text-align:center;
+    padding:20px;
+    background:#111;
+    box-shadow:0 0 15px #ff0000,0 0 30px #ff3300;
+  }
 
-    nav a.active {
-      color: #000;
-      background: #ff0000;
-      box-shadow: 0 0 15px #ff0000,0 0 25px #ff3300,0 0 40px #ff6666;
-      transform: scale(1.05);
-    }
-
-    section {
-      padding: 40px 20px;
-      margin: 30px auto;
-      max-width: 900px;
-      background: #111;
-      border-radius: 15px;
-      box-shadow: 0 0 20px #ff0000,0 0 40px #ff3300;
-      transition: transform 0.3s, box-shadow 0.3s;
-    }
-
-    section:hover {
-      transform: scale(1.02);
-      box-shadow: 0 0 40px #ff0000,0 0 60px #ff3333;
-    }
-
-    h2 { color: #ff0000; text-align: center; margin-bottom: 20px; animation: flicker 1.5s infinite alternate; }
-    .episode-card { margin-bottom: 25px; flex-wrap: wrap; }
-    .episode-card h3 { margin-bottom: 10px; }
-    .episode-links { display: flex; gap: 15px; flex-wrap: wrap; margin-top: 10px; }
-
-    ul { list-style: none; padding: 0; text-align: center; }
-    ul li { margin: 15px 0; }
-
-    a {
-      color: #fff;
-      font-weight: bold;
-      text-decoration: none;
-      padding: 8px 16px;
-      border: 2px solid #ff0000;
-      border-radius: 8px;
-      transition: all 0.3s ease;
-      box-shadow: 0 0 5px #ff0000;
-    }
-    a:hover { color: #000; background: #ff0000; box-shadow:0 0 15px #ff0000,0 0 25px #ff3300,0 0 40px #ff6666; transform: scale(1.05); }
-
-    .about img, .merch img { width: 200px; height: auto; display: block; margin: 0 auto 20px auto; border-radius: 15px; box-shadow:0 0 20px #ff0000,0 0 40px #ff3300; }
-    footer { text-align:center; padding:20px; background:#111; box-shadow:0 0 15px #ff0000,0 0 30px #ff3300; }
-
-    @media (max-width:600px){
-      header h1 { font-size:2rem; }
-      header p { font-size:1rem; }
-      .about img, .merch img { width:150px; }
-      .episode-links { flex-direction: column; align-items:center; }
-    }
-  </style>
+  @media(max-width:600px){
+    header h1{ font-size:2rem; }
+    header p{ font-size:1rem; }
+    .about-container { flex-direction:column; align-items:center; text-align:center;}
+    .about-container p { text-align:center;}
+    .episode-links { flex-direction:column; align-items:center; }
+  }
+</style>
 </head>
 <body>
 
@@ -146,11 +180,12 @@
 
 <nav>
   <a href="#episodes">Episodes</a>
-  <a href="#connect">Connect</a>
   <a href="#about">About</a>
   <a href="#merch">Merchandise</a>
+  <a href="#connect">Connect</a>
 </nav>
 
+<!-- Episodes -->
 <section id="episodes">
   <h2>Latest Episodes</h2>
   <div class="episode-card">
@@ -182,25 +217,30 @@
   </div>
 </section>
 
+<!-- About -->
+<section id="about">
+  <h2>About the Hosts</h2>
+  <div class="about-container">
+    <img src="host_image.png" alt="Karen and Alex">
+    <p><strong>Karen Silver</strong> is a children's author and journalist from St. John's, NL. She has a BA in Communications and Linguistics from Memorial University of Newfoundland. Karen created Write On NL to support literary arts in NL.<br><strong>Alex Noftal</strong> – Bio coming soon!</p>
+  </div>
+</section>
+
+<!-- Merchandise -->
+<section id="merch">
+  <h2>Merchandise</h2>
+  <div class="merch-card">
+    <p>Stay tuned for our exclusive merchandise.</p>
+  </div>
+</section>
+
+<!-- Connect -->
 <section id="connect">
   <h2>Connect With Us</h2>
   <ul>
     <li><a href="https://www.facebook.com/profile.php?id=61577986559997" target="_blank">Facebook</a></li>
     <li><a href="mailto:bitranscanadahighway@gmail.com">Email</a></li>
   </ul>
-</section>
-
-<section id="about">
-  <h2>About the Hosts</h2>
-  <img src="host_image.png" alt="Karen and Alex">
-  <p><strong>Karen Silver</strong> is a children's author and journalist from St. John's, NL. She has a BA in Communications and Linguistics from Memorial University of Newfoundland. Karen created Write On NL to support literary arts in NL. <em>"I love helping Canadians understand their rights!"</em></p>
-  <p><strong>Alex Noftal</strong> – Bio coming soon! <em>"Let's explore Canadian laws together."</em></p>
-</section>
-
-<section id="merch">
-  <h2>Merchandise</h2>
-  <img src="merch-placeholder.png" alt="Merch Coming Soon">
-  <p>Stay tuned for our exclusive merchandise.</p>
 </section>
 
 <footer>
@@ -215,16 +255,20 @@
   window.addEventListener('scroll', () => {
     let current = '';
     sections.forEach(section => {
-      const sectionTop = section.offsetTop - 100;
+      const sectionTop = section.offsetTop - 120;
       const sectionHeight = section.clientHeight;
       if (pageYOffset >= sectionTop && pageYOffset < sectionTop + sectionHeight) {
         current = section.getAttribute('id');
+      }
+      // Trigger fade-in on scroll
+      if(pageYOffset + window.innerHeight - 100 > section.offsetTop){
+        section.classList.add('visible');
       }
     });
 
     navLinks.forEach(link => {
       link.classList.remove('active');
-      if (link.getAttribute('href') === '#' + current) {
+      if(link.getAttribute('href') === '#' + current){
         link.classList.add('active');
       }
     });
