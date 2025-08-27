@@ -5,46 +5,37 @@
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>B.I. Trans Canada Highway</title>
 <style>
-  body {
-    margin:0;
-    font-family: Arial, sans-serif;
-    background:#000;
-    color:#fff;
-    scroll-behavior: smooth;
-  }
+  body { margin:0; font-family:Arial,sans-serif; background:#000; color:#fff; scroll-behavior:smooth; }
 
   /* Banner */
   header {
     position: relative;
-    height: 300px;
-    background: url('banner-highres.png') center/cover no-repeat;
+    background:#000;
     display:flex;
-    flex-direction: column;
-    justify-content: center;
-    align-items: center;
+    flex-direction:column;
+    align-items:center;
+    justify-content:center;
     text-align:center;
+    padding:10px 0;
+  }
+  .banner-logo {
+    width:100%;
+    max-height:150px;
+    object-fit:contain;
+    filter: drop-shadow(0 0 15px #ff0000);
+  }
+  .banner-text h1 {
+    margin:10px 0 0 0;
+    font-size:2rem;
     color:#ff0000;
-  }
-  header::after {
-    content:"";
-    position:absolute;
-    top:0; left:0;
-    width:100%; height:100%;
-    background: rgba(0,0,0,0.4);
-  }
-  header h1, header p {
-    position: relative;
-    z-index:1;
-    margin:0;
-  }
-  header h1 {
-    font-size:2.8rem;
-    text-shadow: 0 0 5px #ff0000,0 0 10px #ff0000,0 0 20px #ff3300;
+    text-shadow:0 0 5px #ff0000,0 0 10px #ff3300;
     animation:flicker 1.5s infinite alternate;
   }
-  header p {
-    font-size:1.2rem;
-    text-shadow: 0 0 5px #ff0000,0 0 10px #ff3300;
+  .banner-text p {
+    margin:5px 0 0 0;
+    font-size:1rem;
+    color:#ff3300;
+    text-shadow:0 0 5px #ff3300;
     animation:flicker 2s infinite alternate-reverse;
   }
   @keyframes flicker {
@@ -54,136 +45,86 @@
 
   /* Navbar */
   nav {
-    position: sticky;
-    top:0;
-    background:#111;
-    display:flex;
-    justify-content:center;
-    gap:25px;
-    padding:15px 0;
-    z-index:10;
+    position:sticky; top:0; background:#111; display:flex; justify-content:center; gap:25px; padding:15px 0; z-index:10;
     box-shadow:0 0 15px red;
   }
   nav a {
-    color:#fff;
-    font-weight:bold;
-    text-decoration:none;
-    padding:8px 16px;
-    border:2px solid #ff0000;
-    border-radius:8px;
-    transition: all 0.3s ease;
-    box-shadow:0 0 5px #ff0000;
+    color:#fff; font-weight:bold; text-decoration:none; padding:8px 16px; border:2px solid #ff0000; border-radius:8px; transition: all 0.3s ease; box-shadow:0 0 5px #ff0000;
   }
-  nav a:hover, nav a.active {
-    color:#000;
-    background:#ff0000;
-    box-shadow:0 0 15px #ff0000,0 0 25px #ff3300;
-    transform: scale(1.05);
-  }
+  nav a:hover, nav a.active { color:#000; background:#ff0000; box-shadow:0 0 15px #ff0000,0 0 25px #ff3300; transform: scale(1.05); }
 
   /* Sections */
-  section {
-    max-width:900px;
-    margin:30px auto;
-    padding:40px 20px;
-    background:#111;
-    border-radius:15px;
-    box-shadow:0 0 20px #ff0000,0 0 40px #ff3300;
-    opacity:0;
-    transform: translateY(30px);
-    transition: all 0.8s ease-out;
-  }
-  section.visible {
-    opacity:1;
-    transform: translateY(0);
-  }
-  h2 {
-    color:#ff0000;
-    text-align:center;
-    margin-bottom:20px;
-    animation:flicker 1.5s infinite alternate;
-  }
+  section { max-width:900px; margin:30px auto; padding:40px 20px; background:#111; border-radius:15px; box-shadow:0 0 20px #ff0000,0 0 40px #ff3300; opacity:0; transform: translateY(30px); transition: all 0.8s ease-out; }
+  section.visible { opacity:1; transform: translateY(0); }
+  h2 { color:#ff0000; text-align:center; margin-bottom:20px; animation:flicker 1.5s infinite alternate; }
+
+  /* About Podcast */
+  .podcast-card { background:#000; border:2px solid #ff0000; border-radius:15px; padding:30px; margin:20px auto; max-width:900px; box-shadow:0 0 20px #ff0000,0 0 40px #ff3300; transition: transform 0.3s, box-shadow 0.3s; }
+  .podcast-card:hover { transform: scale(1.03); box-shadow:0 0 30px #ff0000,0 0 50px #ff3300; }
+
+  /* Hosts Section */
+  .hosts-container { display:flex; gap:30px; flex-wrap:wrap; justify-content:center; }
+  .host-card { flex:1 1 400px; background:#111; border:2px solid #ff0000; border-radius:15px; padding:20px; text-align:center; box-shadow:0 0 20px #ff0000,0 0 40px #ff3300; transition: transform 0.3s, box-shadow 0.3s; }
+  .host-card:hover { transform: scale(1.03); box-shadow:0 0 30px #ff0000,0 0 50px #ff3300; }
+  .host-card img { width:150px; border-radius:15px; margin-bottom:15px; box-shadow:0 0 15px #ff0000,0 0 25px #ff3300; }
 
   /* Episodes */
-  .episode-card {
-    background:#000;
-    border:2px solid #ff0000;
-    border-radius:15px;
-    padding:20px;
-    margin-bottom:25px;
-    box-shadow:0 0 15px #ff0000;
-    transition: transform 0.3s, box-shadow 0.3s;
-  }
-  .episode-card:hover {
-    transform: scale(1.03);
-    box-shadow:0 0 25px #ff0000,0 0 40px #ff3300;
-  }
+  .episode-card { background:#000; border:2px solid #ff0000; border-radius:15px; padding:20px; margin-bottom:25px; box-shadow:0 0 15px #ff0000; transition: transform 0.3s, box-shadow 0.3s; }
+  .episode-card:hover { transform: scale(1.03); box-shadow:0 0 25px #ff0000,0 0 40px #ff3300; }
   .episode-card h3 { margin-bottom:10px; }
-  .episode-links {
-    display:flex;
-    gap:15px;
-    flex-wrap:wrap;
-    margin-top:10px;
-    justify-content:center;
-  }
+  .episode-links { display:flex; gap:15px; flex-wrap:wrap; margin-top:10px; justify-content:center; }
 
-  /* About Section */
-  .about-container {
-    display:flex;
-    align-items:center;
-    gap:30px;
-    flex-wrap:wrap;
-  }
-  .about-container img {
-    width:200px;
-    border-radius:15px;
-    box-shadow:0 0 20px #ff0000,0 0 40px #ff3300;
-  }
-  .about-container p { flex:1; text-align:left; }
+  /* Merchandise */
+  .merch-card { text-align:center; padding:30px; border:2px solid #ff0000; border-radius:15px; box-shadow:0 0 20px #ff0000,0 0 40px #ff3300; transition: transform 0.3s, box-shadow 0.3s; }
+  .merch-card:hover { transform: scale(1.05); box-shadow:0 0 30px #ff0000,0 0 50px #ff3300; }
 
-  /* Merch */
-  .merch-card {
-    text-align:center;
-    padding:30px;
-    border:2px solid #ff0000;
-    border-radius:15px;
-    box-shadow:0 0 20px #ff0000,0 0 40px #ff3300;
-    transition: transform 0.3s, box-shadow 0.3s;
-  }
-  .merch-card:hover {
-    transform: scale(1.05);
-    box-shadow:0 0 30px #ff0000,0 0 50px #ff3300;
-  }
+  /* Connect Section */
+  .connect-links { display:flex; justify-content:center; gap:30px; flex-wrap:wrap; }
+  .connect-links a { display:flex; align-items:center; gap:10px; color:#fff; font-weight:bold; text-decoration:none; padding:10px 20px; border:2px solid #ff0000; border-radius:10px; box-shadow:0 0 10px #ff0000; transition: all 0.3s ease; }
+  .connect-links a:hover { color:#000; background:#ff0000; box-shadow:0 0 20px #ff0000,0 0 35px #ff3300; transform: scale(1.05); }
+  .connect-links .icon { width:24px; height:24px; filter: drop-shadow(0 0 5px #ff0000); }
 
-  footer {
-    text-align:center;
-    padding:20px;
-    background:#111;
-    box-shadow:0 0 15px #ff0000,0 0 30px #ff3300;
-  }
+  footer { text-align:center; padding:20px; background:#111; box-shadow:0 0 15px #ff0000,0 0 30px #ff3300; }
 
   @media(max-width:600px){
-    header h1{ font-size:2rem; }
-    header p{ font-size:1rem; }
-    .about-container { flex-direction:column; align-items:center; text-align:center;}
-    .about-container p { text-align:center;}
+    .hosts-container { flex-direction:column; align-items:center; }
+    .host-card img { width:120px; }
     .episode-links { flex-direction:column; align-items:center; }
   }
 </style>
 </head>
 <body>
 
+<!-- Banner / Logo -->
 <header>
-  <h1>B.I. Trans Canada Highway</h1>
-  <p>Exploring Canadian Rights and Laws</p>
+  <img src="logo.png" alt="B.I. Trans Canada Highway Logo" class="banner-logo">
+  <div class="banner-text">
+    <h1>B.I. Trans Canada Highway</h1>
+    <p>Exploring Canadian Rights and Laws</p>
+  </div>
 </header>
 
+<!-- Navbar -->
 <nav>
+  <a href="#about-podcast">About Podcast</a>
   <a href="#episodes">Episodes</a>
-  <a href="#about">About</a>
+  <a href="#about">About Hosts</a>
   <a href="#merch">Merchandise</a>
   <a href="#connect">Connect</a>
 </nav>
+
+<!-- About Podcast -->
+<section id="about-podcast">
+  <h2>About the Podcast</h2>
+  <div class="podcast-card">
+    <p>
+      Hey, Canadians! Do you know your rights? Or are you more familiar with the rights of Americans?<br><br>
+      Media and pop culture may give us the impression that we know the laws and rights that regulate the world around us, but much of what we know about Canadian laws might be assumptions influenced by what we see from the US.<br><br>
+      Join Karen and Alex as they sort through Canadian laws, regulations, and rights, reviewing real Canadian cases that reference or even influence the law in question.<br><br>
+      We’re not Un-American, we’re just not American.
+    </p>
+  </div>
+</section>
 
 <!-- Episodes -->
 <section id="episodes">
@@ -217,12 +158,18 @@
   </div>
 </section>
 
-<!-- About -->
+<!-- About Hosts -->
 <section id="about">
   <h2>About the Hosts</h2>
-  <div class="about-container">
-    <img src="host_image.png" alt="Karen and Alex">
-    <p><strong>Karen Silver</strong> is a children's author and journalist from St. John's, NL. She has a BA in Communications and Linguistics from Memorial University of Newfoundland. Karen created Write On NL to support literary arts in NL.<br><strong>Alex Noftal</strong> – Bio coming soon!</p>
+  <div class="hosts-container">
+    <div class="host-card">
+      <img src="karen.png" alt="Karen Silver">
+      <p><strong>Karen Silver</strong> is a children's author and journalist from St. John's, NL. With a BA in Communications and Linguistics from Memorial University of Newfoundland, she’s passionate about keeping Canadians informed about their rights and laws. As the creator of <em>Write On NL</em>, Karen inspires children and adults alike to engage with the literary arts while staying curious about how the world around them is governed.</p>
+    </div>
+    <div class="host-card">
+      <img src="alex.png" alt="Alex Noftal">
+      <p><strong>Alex Noftal</strong> – Bio coming soon!</p>
+    </div>
   </div>
 </section>
 
@@ -237,10 +184,14 @@
 <!-- Connect -->
 <section id="connect">
   <h2>Connect With Us</h2>
-  <ul>
-    <li><a href="https://www.facebook.com/profile.php?id=61577986559997" target="_blank">Facebook</a></li>
-    <li><a href="mailto:bitranscanadahighway@gmail.com">Email</a></li>
-  </ul>
+  <div class="connect-links">
+    <a href="https://www.facebook.com/profile.php?id=61577986559997" target="_blank">
+      <img src="facebook-icon.svg" alt="Facebook" class="icon"> Facebook
+    </a>
+    <a href="mailto:bitranscanadahighway@gmail.com">
+      <img src="email-icon.svg" alt="Email" class="icon"> Email
+    </a>
+  </div>
 </section>
 
 <footer>
@@ -248,10 +199,9 @@
 </footer>
 
 <script>
-  // Scrollspy
+  // Scrollspy + fade-in on scroll
   const sections = document.querySelectorAll('section');
   const navLinks = document.querySelectorAll('nav a');
-
   window.addEventListener('scroll', () => {
     let current = '';
     sections.forEach(section => {
@@ -260,12 +210,10 @@
       if (pageYOffset >= sectionTop && pageYOffset < sectionTop + sectionHeight) {
         current = section.getAttribute('id');
       }
-      // Trigger fade-in on scroll
       if(pageYOffset + window.innerHeight - 100 > section.offsetTop){
         section.classList.add('visible');
       }
     });
-
     navLinks.forEach(link => {
       link.classList.remove('active');
       if(link.getAttribute('href') === '#' + current){
@@ -277,6 +225,3 @@
 
 </body>
 </html>
-
-
-
